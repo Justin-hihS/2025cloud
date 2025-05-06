@@ -20,6 +20,30 @@ docker run -p 3000:3000 myapp
 
 The application will be accessible at `http://localhost:3000`
 
+### Automated Container Image Build Process
+
+The project uses GitHub Actions for automated container image builds. Here's how it works:
+
+1. **Trigger Conditions**:
+   - Push to main branch
+   - Pull request to main branch
+   - Manual workflow dispatch
+
+2. **Build Process**:
+   ```mermaid
+   graph TD
+   A[Code Push/PR] --> B[GitHub Actions Trigger]
+   B --> C[Build Docker Image]
+   C --> D[Push to Container Registry]
+   D --> E[Deploy if needed]
+   ```
+
+3. **Image Tagging Strategy**:
+   - Latest tag: `latest`
+   - Version tag: `v{major}.{minor}.{patch}`
+   - Commit tag: `{short-sha}`
+   - Branch tag: `{branch-name}`
+
 ## 中文版本
 
 ### 使用 Docker 構建應用程式
@@ -39,6 +63,30 @@ docker run -p 3000:3000 myapp
 ```
 
 應用程式將在 `http://localhost:3000` 上運行
+ad
+### 自動化容器映像生成流程
+
+本專案使用 GitHub Actions 進行自動化容器映像構建。以下是詳細說明：
+
+1. **觸發條件**：
+   - 推送到主分支
+   - 向主分支發起 Pull Request
+   - 手動觸發工作流程
+
+2. **構建流程**：
+   ```mermaid
+   graph TD
+   A[代碼推送/PR] --> B[GitHub Actions 觸發]
+   B --> C[構建 Docker 映像]
+   C --> D[推送到容器倉庫]
+   D --> E[需要時部署]
+   ```
+
+3. **映像標籤策略**：
+   - 最新版本：`latest`
+   - 版本標籤：`v{major}.{minor}.{patch}`
+   - 提交標籤：`{short-sha}`
+   - 分支標籤：`{branch-name}`
 
 ### 參數說明
 
